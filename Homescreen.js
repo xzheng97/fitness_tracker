@@ -9,6 +9,7 @@ import DatePicker from 'react-native-datepicker';
 import Activity from './Activity';
 import Meal from './Meal';
 import moment from 'moment';
+import { createIconSetFromFontello } from 'react-native-vector-icons';
 
 
 class HomeScreen extends React.Component {
@@ -112,7 +113,7 @@ class HomeScreen extends React.Component {
                 <View style={{ marginTop:10, marginBottom:10}}>
                     <Card>
                     <View style={{padding:20}}>
-                        <TextInput ref={this.actName} placeholder='enter meal name' style={[styles.storyHeading,{fontSize:14, marginTop:5}]}
+                        <TextInput ref={this.actName} placeholder='enter activity name' style={[styles.storyHeading,{fontSize:14, marginTop:5}]}
                             onChangeText = {(text)=>this.addMeal.name=text}/>
                         <View style={{flexDirection:'row', marginTop:10}}>
                             <DatePicker
@@ -135,7 +136,7 @@ class HomeScreen extends React.Component {
                                 }}
                                 onDateChange={(date) => {
                                 let newDate = new Date(date);
-                                this.addMeal.date=newDate;
+                                this.addActivity.date=newDate;
                                 this.setState({actdate: date});
                                 }}/>
                             <View style={{marginLeft:60}}>
@@ -162,7 +163,7 @@ class HomeScreen extends React.Component {
                 <View style={{ marginTop:10, marginBottom:10}}>
                     <Card>
                     <View style={{padding:20}}>
-                        <TextInput ref={this.mealName} placeholder='enter activity name' style={[styles.storyHeading,{fontSize:14, marginTop:5}]}
+                        <TextInput ref={this.mealName} placeholder='enter meal name' style={[styles.storyHeading,{fontSize:14, marginTop:5}]}
                             onChangeText = {(text)=>this.addMeal.name=text}/>
                         <View style={{flexDirection:'row', marginTop:10}}>
                             <DatePicker
@@ -185,7 +186,7 @@ class HomeScreen extends React.Component {
                                 }}
                                 onDateChange={(date) => {
                                 let newDate = new Date(date);
-                                this.addActivity.date=newDate;
+                                this.addMeal.date=newDate;
                                 this.setState({mealdate: date});
                                 }}/>
                             <View style={{marginLeft:60}}>
@@ -194,7 +195,7 @@ class HomeScreen extends React.Component {
                                     text={'use current time'} onPress={() => {
                                         let tempday = new Date();
                                         this.setState({mealdate: tempday});
-                                        this.addActivity.date = tempday;
+                                        this.addMeal.date = tempday;
                                     }} />
                             </View>
                         </View>
@@ -225,7 +226,7 @@ class HomeScreen extends React.Component {
                     <Text style={[styles.storyHeading,{fontSize:14, marginTop:0}]}>Calories</Text>
                     <View style={{flexDirection:'row'}}>
                         <Text style={{width:270}}>You have consumed:</Text>
-                        <Text>{this.state.dailyAggr.calories} cals</Text>
+                        <Text>{this.state.dailyAggr.calories?this.state.dailyAggr.calories:0} cals</Text>
                     </View>
                     <View style={{flexDirection:'row', marginTop: 5}}>
                         <Text style={{width:270}}>Your Goal: </Text>
@@ -234,7 +235,7 @@ class HomeScreen extends React.Component {
                     <Text style={[styles.storyHeading,{fontSize:14, marginTop:5}]}>Carbohydrates</Text>
                     <View style={{flexDirection:'row'}}>
                         <Text style={{width:270}}>You have consumed:</Text>
-                        <Text>{this.state.dailyAggr.carbohydrates} grams</Text>
+                        <Text>{this.state.dailyAggr.carbohydrates?this.state.dailyAggr.carbohydrates:0} grams</Text>
                     </View>
                     <View style={{flexDirection:'row', marginTop: 5}}>
                         <Text style={{width:270}}>Your Goal: </Text>
@@ -243,7 +244,7 @@ class HomeScreen extends React.Component {
                     <Text style={[styles.storyHeading,{fontSize:14, marginTop:5}]}>Fat</Text>
                     <View style={{flexDirection:'row'}}>
                         <Text style={{width:270}}>You have consumed:</Text>
-                        <Text>{this.state.dailyAggr.fat} grams</Text>
+                        <Text>{this.state.dailyAggr.fat?this.state.dailyAggr.fat:0} grams</Text>
                     </View>
                     <View style={{flexDirection:'row', marginTop: 5}}>
                         <Text style={{width:270}}>Your Goal: </Text>
@@ -252,7 +253,7 @@ class HomeScreen extends React.Component {
                     <Text style={[styles.storyHeading,{fontSize:14, marginTop:5}]}>Protein</Text>
                     <View style={{flexDirection:'row'}}>
                         <Text style={{width:270}}>You have consumed:</Text>
-                        <Text>{this.state.dailyAggr.protein} grams</Text>
+                        <Text>{this.state.dailyAggr.protein?this.state.dailyAggr.protein:0} grams</Text>
                     </View>
                     <View style={{flexDirection:'row', marginTop: 5}}>
                         <Text style={{width:270}}>Your Goal: </Text>
